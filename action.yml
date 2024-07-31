@@ -15,7 +15,7 @@ runs:
   using: "composite"
   steps:
     - name: Install gdnsd and wget
-      run: sudo apt-get install -y gdnsd wget
+      run: sudo apt-get update && sudo apt-get install -y gdnsd wget
       shell: bash
 
     - name: Creating directory for the GeoIP2 Country Test database
