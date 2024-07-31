@@ -1,0 +1,36 @@
+name: 'dns-check-action'
+author: 'WikiTide Technology Team'
+description: 'provides checking of zonefiles using gdnsd'
+inputs:
+  geoip-directory:
+    description: 'Path where we should put the GeoIP2 Country Test database'
+    required: true
+    default: '/usr/share/GeoIP'
+
+  geoip-filename:
+    description: 'Name for the file with the GeoIP2 Country Test database'
+    required: true
+    default: 'GeoLite2-Country.mmdb'
+runs:
+  using: "composite"
+  steps:
+    - name: Install gdnsd and wget
+      run: sudo apt-get install -y gdnsd wget
+      shell: bash
+
+    - name: Creating directory for the GeoIP2 Country Test database
+      run: sudo mkdir -p "$GEOIP2_PATH"
+      shell: bash
+      env:
+        GEOIP2_PATH: ${{ inputs.geoip-directory }}
+
+    - name: Download the GeoIP2 Country Test database
+      run: sudo wget "https://github.com/maxmind/MaxMind-DB/raw/e92ddde7128f928889ace232cebe8833182f599b/test-data/GeoIP2-Country-Test.mmdb" -O "$GEOIP2_PATH/$GEOIP2_FILENAME"
+      shell: bash
+      env:
+        GEOIP2_PATH: ${{ inputs.geoip-directory }}
+        GEOIP2_FILENAME: ${{ inputs.geoip-filename }}
+
+    - name: Run gdnsd checkconf
+      run: gdnsc -c . checkconf
+      shell: bash
