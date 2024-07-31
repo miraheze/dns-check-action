@@ -32,5 +32,5 @@ runs:
         GEOIP2_FILENAME: ${{ inputs.geoip-filename }}
 
     - name: Run gdnsd checkconf
-      run: gdnsc -c . checkconf
+      run: gdnsd -c . checkconf
       shell: bash
