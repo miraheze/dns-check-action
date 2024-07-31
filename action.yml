@@ -18,7 +18,7 @@ runs:
       run: sudo apt-get update && sudo apt-get install -y gdnsd wget
       shell: bash
 
-    - name: Creating directory for the GeoIP2 Country Test database
+    - name: Create directory for the GeoIP2 Country Test database
       run: sudo mkdir -p "$GEOIP2_PATH"
       shell: bash
       env:
