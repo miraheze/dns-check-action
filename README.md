@@ -1,6 +1,8 @@
 # dns-check-action
 
-A GitHub Action that uses gdnsd to check the syntax of zonefiles
+A GitHub Action that uses gdnsd to check the syntax of zonefiles.
+
+This Action uses the [GeoIP2 Country Test database](https://github.com/maxmind/MaxMind-DB/blob/e92ddde7128f928889ace232cebe8833182f599b/test-data/GeoIP2-Country-Test.mmdb), dual licensed under the Apache-2.0 and MIT licenses
 
 Licensed under the GPL-3.0 or later.
 
